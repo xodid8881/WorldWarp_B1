@@ -1,0 +1,9 @@
+name: WorldWarp
+version: "B1"
+api: [3.3.1, 4.0.0]
+author: saena
+main: WorldWarp\WorldWarp
+commands:
+  월드이동:
+    usage: /월드이동
+    description: 월드이동
