@@ -24,8 +24,7 @@ class WorldWarp extends PluginBase implements Listener {
 			switch ($args [0]) {
 				case $args [0] :
 					$sender->sendMessage ( $tag . " 월드 " . $args [0] . " 로 이동했습니다." );
-					$world = strtolower($args [0]);
-					$sender->teleport($this->getServer()->getLevelByName($world)->getSafeSpawn());
+					$sender->teleport($this->getServer()->getLevelByName($args [0])->getSafeSpawn());
 					break;
 			  }
                         return true;
