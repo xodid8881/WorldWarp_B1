@@ -2,12 +2,9 @@
 
 namespace WorldWarp;
 
-// 플러그인
 use pocketmine\plugin\PluginBase;
-// 이벤트
 use pocketmine\event\Listener;
 use pocketmine\level\Level;
-// 커맨드
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 
@@ -23,12 +20,18 @@ class WorldWarp extends PluginBase implements Listener {
 			}
 			switch ($args [0]) {
 				case $args [0] :
-					$sender->sendMessage ( $tag . " 월드 " . $args [0] . " 로 이동했습니다." );
-					$sender->teleport($this->getServer()->getLevelByName($args [0])->getSafeSpawn());
-					break;
-			  }
-                        return true;
-		  }
-                 return true;
-	 }
+				$worlds = $this->getServer()->getLevelByName($args[0]);
+				$world = $args [0];
+				if (!$worlds instanceof Level) {
+					$sender->sendMessage ( $tag . " 월드 " . $world . " 는 없습니다." );
+					return true;
+				}
+				$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
+				$sender->teleport($this->getServer ()->getLevelByName($world)->getSafeSpawn());
+				return true;
+			}
+			return true;
+		}
+		return true;
+	}
 }
