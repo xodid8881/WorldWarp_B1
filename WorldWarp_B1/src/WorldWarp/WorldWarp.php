@@ -32,10 +32,13 @@ class WorldWarp extends PluginBase implements Listener {
 				}
 				if (! Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] ) instanceof World) {
 					Server::getInstance()->getWorldManager()->loadWorld ( $args [0] );
-					$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
+					$sender->sendMessage ( $tag . " 월드 " . $args [0] . " 로 이동했습니다." );
 					$sender->teleport(Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] )->getSafeSpawn());
 					return true;
-					
+				} else {
+					$sender->sendMessage ( $tag . " 월드 " . $args [0] . " 로 이동했습니다." );
+					$sender->teleport(Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] )->getSafeSpawn());
+					return true;
 				}
 			}
 		}
