@@ -1,6 +1,6 @@
 name: WorldWarp
-version: "B1"
-api: [3.3.1, 4.0.0]
+version: "B2"
+api: [4.0.0]
 author: saena
 main: WorldWarp\WorldWarp
 commands:
