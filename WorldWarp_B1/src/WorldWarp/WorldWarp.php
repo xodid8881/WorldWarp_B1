@@ -13,6 +13,7 @@ use pocketmine\command\CommandSender;
 
 class WorldWarp extends PluginBase implements Listener {
 	
+	
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
 	{
 		$tag = "§b§l[ §f월드§b ] §f";
@@ -25,19 +26,18 @@ class WorldWarp extends PluginBase implements Listener {
 			}
 			switch ($args [0]) {
 				case $args [0] :
-				foreach (Server::getInstance()->getWorldManager()->getWorlds() as $level) {
-					$world = $level->getFolderName();
-					if ($world == $args [0]) {
-						$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
-						$sender->teleport($this->getServer ()->getWorldManager()->getWorldByName($world)->getSafeSpawn());
-						return true;
-					}
+				if (! file_exists ( $this->getServer ()->getDataPath () . "worlds/" . $args [0] )) {
+					$sender->sendMessage ( $prefix . "해당 월드를 찾을 수 없습니다.." );
+					return true;
 				}
-				$sender->sendMessage ( $tag . " 월드 " . $world . " 는 없습니다." );
-				return true;
+				if (! Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] ) instanceof World) {
+					$this->getServer ()->loadLevel ( $args [0] );
+					$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
+					$sender->teleport(Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] )->getSafeSpawn());
+					return true;
+					
+				}
 			}
-			return true;
 		}
-		return true;
 	}
 }
