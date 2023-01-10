@@ -3,3 +3,12 @@ version: "B2"
 api: [4.0.0]
 author: saena
 main: WorldWarp\WorldWarp
+
+commands:
+  월드이동:
+   permission: worldwarp.true
+   description: 월드이동 관련 명령어
+
+permissions:
+  worldwarp.true:
+    default: true
