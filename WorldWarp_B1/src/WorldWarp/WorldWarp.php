@@ -27,10 +27,10 @@ class WorldWarp extends PluginBase implements Listener {
 				case $args [0] :
 				foreach (Server::getInstance()->getWorldManager()->getWorlds() as $level) {
 					$world = $level->getFolderName();
-					if (!$world == $args [0]) {
+					if ($world != $args [0]) {
 						$sender->sendMessage ( $tag . " 월드 " . $world . " 는 없습니다." );
 						return true;
-					} else {
+					} else if ($world == $args [0]) {
 						$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
 						$sender->teleport($this->getServer ()->getWorldManager()->getWorldByName($world)->getSafeSpawn());
 						return true;
