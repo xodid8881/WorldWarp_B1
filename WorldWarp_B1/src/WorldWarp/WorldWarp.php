@@ -11,7 +11,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\world\World;
 
 class WorldWarp extends PluginBase implements Listener {
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
 		$tag = "§b§l[ §f월드§b ] §f";
 		$command = $command->getName ();
 		$name = $sender->getName ();
