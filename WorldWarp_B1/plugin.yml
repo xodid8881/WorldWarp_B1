@@ -1,7 +1,7 @@
 name: WorldWarp
 version: "B2"
 api: [4.0.0]
-author: saena
+author: HWABAEG
 main: WorldWarp\WorldWarp
 
 commands:
