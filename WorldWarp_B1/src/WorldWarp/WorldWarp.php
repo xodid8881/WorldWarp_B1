@@ -5,13 +5,16 @@ namespace WorldWarp;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 
+use pocketmine\world\World;
+use pocketmine\Server;
+
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 
-use pocketmine\world\World;
-
 class WorldWarp extends PluginBase implements Listener {
+	
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
+	{
 		$tag = "§b§l[ §f월드§b ] §f";
 		$command = $command->getName ();
 		$name = $sender->getName ();
@@ -22,15 +25,17 @@ class WorldWarp extends PluginBase implements Listener {
 			}
 			switch ($args [0]) {
 				case $args [0] :
-				$worlds = $this->getServer()->getWorldManager()->getWorldByName($args[0]);
-				$world = $args [0];
-				if (!$worlds instanceof World) {
-					$sender->sendMessage ( $tag . " 월드 " . $world . " 는 없습니다." );
-					return true;
+				foreach (Server::getInstance()->getWorldManager()->getWorlds() as $level) {
+					$world = $level->getFolderName();
+					if (!$world == $args [0]) {
+						$sender->sendMessage ( $tag . " 월드 " . $world . " 는 없습니다." );
+						return true;
+					} else {
+						$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
+						$sender->teleport($this->getServer ()->getWorldManager()->getWorldByName($world)->getSafeSpawn());
+						return true;
+					}
 				}
-				$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
-				$sender->teleport($this->getServer ()->getWorldManager()->getWorldByName($world)->getSafeSpawn());
-				return true;
 			}
 			return true;
 		}
