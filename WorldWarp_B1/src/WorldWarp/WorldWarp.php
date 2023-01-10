@@ -22,14 +22,14 @@ class WorldWarp extends PluginBase implements Listener {
 			}
 			switch ($args [0]) {
 				case $args [0] :
-				$worlds = $this->getServer()->getLevelByName($args[0]);
+				$worlds = $this->getServer()->getWorldManager()->getWorldByName($args[0]);
 				$world = $args [0];
-				if (!$worlds instanceof Level) {
+				if (!$worlds instanceof World) {
 					$sender->sendMessage ( $tag . " 월드 " . $world . " 는 없습니다." );
 					return true;
 				}
 				$sender->sendMessage ( $tag . " 월드 " . $world . " 로 이동했습니다." );
-				$sender->teleport($this->getServer ()->getLevelByName($world)->getSafeSpawn());
+				$sender->teleport($this->getServer ()->getWorldManager()->getWorldByName($world)->getSafeSpawn());
 				return true;
 			}
 			return true;
