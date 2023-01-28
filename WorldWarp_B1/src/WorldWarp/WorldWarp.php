@@ -26,14 +26,12 @@ class WorldWarp extends PluginBase implements Listener {
 			}
 			switch ($args [0]) {
 				case $args [0] :
-				if (! file_exists ( $this->getServer ()->getDataPath () . "worlds/" . $args [0] )) {
-					$sender->sendMessage ( $prefix . "해당 월드를 찾을 수 없습니다.." );
+				if (! file_exists ( $this->getServer ()->getDataPath () . "worlds/" . $args[0] )) {
+					$sender->sendMessage ( $tag . "해당 월드를 찾을 수 없습니다.." );
 					return true;
 				}
-				if (! Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] ) instanceof World) {
-					Server::getInstance()->getWorldManager()->loadWorld ( $args [0] );
-					$sender->sendMessage ( $tag . " 월드 " . $args [0] . " 로 이동했습니다." );
-					$sender->teleport(Server::getInstance()->getWorldManager()->getWorldByName ( $args [0] )->getSafeSpawn());
+				if (! Server::getInstance()->getWorldManager()->getWorldByName ( $args[0] ) instanceof World) {
+					$sender->sendMessage ( $tag . "해당 월드를 찾을 수 없습니다.." );
 					return true;
 				} else {
 					$sender->sendMessage ( $tag . " 월드 " . $args [0] . " 로 이동했습니다." );
