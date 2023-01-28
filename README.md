@@ -6,7 +6,7 @@
 
 # Help
 
-  /월드이동 [ 월드이름 ]
+  /worldwarp [ WorldFolderName ]
 
   해당 이름 월드로 이동 됩니다.
 
